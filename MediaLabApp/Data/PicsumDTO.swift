@@ -22,3 +22,15 @@ struct PicsumDTO: Decodable {
         case downloadURL = "download_url"
     }
 }
+
+extension PicsumDTO {
+    func toDomain() -> MediaItem {
+        MediaItem(
+            id: id,
+            author: author,
+            width: width,
+            height: height,
+            imageURL: downloadURL
+        )
+    }
+}
