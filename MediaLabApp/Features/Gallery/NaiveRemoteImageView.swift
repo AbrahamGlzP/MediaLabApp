@@ -43,7 +43,11 @@ struct NaiveRemoteImageView: View {
         defer { isLoading = false }
 
         do {
-            image = try await loader.load(from: url)
+            //image = try await loader.load(from: url)
+            image = try await loader.loadImage(
+                from: url,
+                maxPixelSize: Int(ceil(350 * displayScale))
+            )
         } catch is CancellationError {
             return
         } catch {

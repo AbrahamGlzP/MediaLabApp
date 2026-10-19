@@ -56,6 +56,7 @@ struct DownsampledImageLoader {
             kCGImageSourceShouldCacheImmediately: true
         ]
 
+        /*
         guard let thumbnail = CGImageSourceCreateThumbnailAtIndex(
             source,
             0,
@@ -65,6 +66,12 @@ struct DownsampledImageLoader {
         }
 
         // 4. Return the thumbnail
+        return UIImage(cgImage: thumbnail)*/
+        let thumbnail = try await ThumbnailProcessor.downsample(
+            data: data,
+            maxPixelSize: maxPixelSize
+        )
+
         return UIImage(cgImage: thumbnail)
     }
 }
